@@ -91,6 +91,12 @@ class Item
     public $Tracks = array();
 
     /**
+     *
+     * @var array of ImageSet
+     */
+    protected $ImageSets = array();
+
+    /**
      * @var array Of ListmaniaList
      */
     public $ListmaniaLists = array();
@@ -141,6 +147,13 @@ class Item
             $result = $xpath->query("./az:ImageSets/az:ImageSet[position() = 1]/az:$im", $dom);
             if ($result->length == 1) {
                 $this->$im = new Image($result->item(0));
+            }
+        }
+
+        $result = $xpath->query('./az:ImageSets/az:*', $dom);
+        if ($result->length >= 1) {
+            foreach ($result as $r) {
+                $this->ImageSets[] = new ImageSet($r);
             }
         }
 
