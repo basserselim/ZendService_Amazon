@@ -207,6 +207,18 @@ class Item
             }
         }
 
+        $result = $xpath->query('./az:Variations', $dom);
+        if ($result->length == 1) {
+            $this->Variations = new Variations($dom);
+        }
+
+        $result = $xpath->query('./az:VariationAttributes/az:VariationAttribute', $dom);
+        if ($result->length >= 1) {
+            foreach ($result as $va) {
+                $this->VariationAttributes[] = new VariationAttribute($va);
+            }
+        }
+
         $this->_dom = $dom;
     }
 
