@@ -101,6 +101,11 @@ class Item
     public $Tracks = array();
 
     /**
+     * @var array of ImageSet
+     */
+    public $ImageSets = array();
+
+    /**
      * @var array Of ListmaniaList
      */
     public $ListmaniaLists = array();
@@ -154,6 +159,13 @@ class Item
             }
         }
 
+        $result = $xpath->query('./az:ImageSets/az:*', $dom);
+        if ($result->length >= 1) {
+            foreach ($result as $r) {
+                $this->ImageSets[] = new Item\ImageSet($r);
+            }
+        }
+        
         $result = $xpath->query('./az:SalesRank/text()', $dom);
         if ($result->length == 1) {
             $this->SalesRank = (int) $result->item(0)->data;
