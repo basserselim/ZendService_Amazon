@@ -71,6 +71,16 @@ class Item
     public $Offers;
 
     /**
+     * @var Variations
+     */
+    public $Variations;
+
+    /**
+     * @var VariationAttributes
+     */
+    public $VariationAttributes = array();
+
+    /**
      * @var array CustomerReview
      */
     public $CustomerReviews = array();
